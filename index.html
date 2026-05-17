@@ -96,8 +96,9 @@
       margin: 0;
     }
     body:has(#carrito:target) #home,
-    body:has(#favoritos:target) #home,
-    body:has(#checkout:target) #home { display: none; }
+    body:has(#favoritos:target) #home {
+      display: none;
+    }
   </style>
 </head>
 <body class="bg-white font-sans antialiased text-lb-ink">
@@ -545,7 +546,6 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <header class="mb-8 md:mb-10 flex flex-col md:flex-row md:items-end md:justify-between gap-4">
         <div>
-          <span class="text-lb-blue text-xs font-semibold tracking-[0.3em] uppercase">Checkout</span>
           <h2 id="heading-carrito" class="font-display text-5xl md:text-6xl text-lb-ink tracking-wide mt-1">Carrito de Compras</h2>
           <p class="text-lb-muted mt-2 text-sm md:text-base">Revisa tus productos antes de finalizar la compra.</p>
         </div>
@@ -770,163 +770,14 @@
             </div>
           </div>
 
-          <a href="#checkout" class="mt-6 w-full inline-flex items-center justify-center bg-lb-blue hover:bg-lb-electric text-white font-bold py-3.5 rounded-lg transition-colors">
-            Comprar
-          </a>
+          <button type="button" class="mt-6 w-full rounded-lg bg-lb-blue px-4 py-3 text-sm font-semibold text-white hover:bg-lb-electric focus:outline-none focus:ring-2 focus:ring-lb-electric/60 focus:ring-offset-2 transition-colors" aria-label="Comprar ahora">
+            Comprar ahora
+          </button>
+          <p class="mt-2 text-center text-xs text-lb-muted">Pago seguro y envio a todo el mundo</p>
         </aside>
       </div>
     </div>
   </section>
-
-  <!-- ================================================
-    CHECKOUT
-  ================================================ -->
-  <section id="checkout" class="hidden target:block py-16 md:py-20 bg-lb-cream scroll-mt-24" aria-labelledby="heading-checkout">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <header class="mb-10">
-        <span class="text-lb-blue text-xs font-semibold tracking-[0.3em] uppercase">Pago seguro</span>
-        <h2 id="heading-checkout" class="font-display text-5xl md:text-6xl text-lb-ink tracking-wide mt-1">Checkout</h2>
-        <p class="text-lb-muted mt-2 text-sm md:text-base">Completa tus datos para finalizar tu compra.</p>
-      </header>
-
-      <div class="grid lg:grid-cols-12 gap-8 items-start">
-        <form id="checkout-form" class="lg:col-span-8 space-y-6" action="#" method="post" autocomplete="on">
-          <section class="bg-white border border-lb-stone rounded-2xl p-5 md:p-6" aria-labelledby="paso-personales">
-            <div class="flex items-center gap-3 mb-5">
-              <span class="w-7 h-7 rounded-full bg-lb-blue text-white text-sm font-bold flex items-center justify-center">1</span>
-              <h3 id="paso-personales" class="text-lg font-semibold text-lb-ink">Datos personales</h3>
-            </div>
-            <div class="grid sm:grid-cols-2 gap-4">
-              <div class="sm:col-span-2">
-                <label for="nombre-completo" class="block text-sm font-medium text-lb-ink mb-1.5">Nombre completo</label>
-                <input id="nombre-completo" name="nombre-completo" type="text" required minlength="2" maxlength="80" pattern="[A-Za-zÁÉÍÓÚÜÑáéíóúüñ ]{2,80}" autocomplete="name" class="w-full rounded-lg border border-lb-stone px-3 py-2.5 text-sm text-lb-ink focus:outline-none focus:ring-1 focus:ring-lb-electric" placeholder="Ej. Camila Perez" />
-              </div>
-              <div>
-                <label for="correo" class="block text-sm font-medium text-lb-ink mb-1.5">Correo electronico</label>
-                <input id="correo" name="correo" type="email" required autocomplete="email" class="w-full rounded-lg border border-lb-stone px-3 py-2.5 text-sm text-lb-ink focus:outline-none focus:ring-1 focus:ring-lb-electric" placeholder="nombre@email.com" />
-              </div>
-              <div>
-                <label for="telefono" class="block text-sm font-medium text-lb-ink mb-1.5">Telefono</label>
-                <input id="telefono" name="telefono" type="tel" required pattern="[0-9]{7,15}" autocomplete="tel" inputmode="numeric" title="Ingresa solo numeros" class="w-full rounded-lg border border-lb-stone px-3 py-2.5 text-sm text-lb-ink focus:outline-none focus:ring-1 focus:ring-lb-electric" placeholder="600000000" />
-              </div>
-            </div>
-          </section>
-
-          <section class="bg-white border border-lb-stone rounded-2xl p-5 md:p-6" aria-labelledby="paso-direccion">
-            <div class="flex items-center gap-3 mb-5">
-              <span class="w-7 h-7 rounded-full bg-lb-blue text-white text-sm font-bold flex items-center justify-center">2</span>
-              <h3 id="paso-direccion" class="text-lg font-semibold text-lb-ink">Direccion de entrega</h3>
-            </div>
-            <div class="grid sm:grid-cols-2 gap-4">
-              <div>
-                <label for="calle" class="block text-sm font-medium text-lb-ink mb-1.5">Calle</label>
-                <input id="calle" name="calle" type="text" required minlength="3" maxlength="80" autocomplete="address-line1" class="w-full rounded-lg border border-lb-stone px-3 py-2.5 text-sm text-lb-ink focus:outline-none focus:ring-1 focus:ring-lb-electric" placeholder="Av. Principal" />
-              </div>
-              <div>
-                <label for="numero" class="block text-sm font-medium text-lb-ink mb-1.5">Numero</label>
-                <input id="numero" name="numero" type="text" required pattern="[0-9A-Za-z\-\s]{1,10}" autocomplete="address-line2" class="w-full rounded-lg border border-lb-stone px-3 py-2.5 text-sm text-lb-ink focus:outline-none focus:ring-1 focus:ring-lb-electric" placeholder="123" />
-              </div>
-              <div>
-                <label for="ciudad" class="block text-sm font-medium text-lb-ink mb-1.5">Ciudad</label>
-                <input id="ciudad" name="ciudad" type="text" required minlength="2" maxlength="60" pattern="[A-Za-zÁÉÍÓÚÜÑáéíóúüñ ]{2,60}" autocomplete="address-level2" class="w-full rounded-lg border border-lb-stone px-3 py-2.5 text-sm text-lb-ink focus:outline-none focus:ring-1 focus:ring-lb-electric" placeholder="Madrid" />
-              </div>
-              <div>
-                <label for="codigo-postal" class="block text-sm font-medium text-lb-ink mb-1.5">Codigo postal</label>
-                <input id="codigo-postal" name="codigo-postal" type="text" required pattern="[A-Za-z0-9\-\s]{3,10}" autocomplete="postal-code" inputmode="numeric" class="w-full rounded-lg border border-lb-stone px-3 py-2.5 text-sm text-lb-ink focus:outline-none focus:ring-1 focus:ring-lb-electric" placeholder="28001" />
-              </div>
-              <div class="sm:col-span-2">
-                <label for="notas" class="block text-sm font-medium text-lb-ink mb-1.5">Notas adicionales</label>
-                <textarea id="notas" name="notas" rows="3" maxlength="250" class="w-full rounded-lg border border-lb-stone px-3 py-2.5 text-sm text-lb-ink focus:outline-none focus:ring-1 focus:ring-lb-electric" placeholder="Indicaciones para la entrega"></textarea>
-              </div>
-            </div>
-          </section>
-
-          <section class="bg-white border border-lb-stone rounded-2xl p-5 md:p-6" aria-labelledby="paso-pago">
-            <div class="flex items-center gap-3 mb-5">
-              <span class="w-7 h-7 rounded-full bg-lb-blue text-white text-sm font-bold flex items-center justify-center">3</span>
-              <h3 id="paso-pago" class="text-lg font-semibold text-lb-ink">Pago</h3>
-            </div>
-
-            <div class="space-y-4">
-              <div>
-                <input id="metodo-tarjeta" type="radio" name="metodo-pago" class="peer sr-only" checked required />
-                <label for="metodo-tarjeta" class="flex items-center justify-between rounded-xl border border-lb-stone px-4 py-3 cursor-pointer peer-checked:border-lb-blue peer-checked:bg-lb-ice/60 transition-colors">
-                  <span class="font-semibold text-sm text-lb-ink">Tarjeta de credito</span>
-                  <span class="text-xs text-lb-muted">Visa / MasterCard</span>
-                </label>
-                <div class="hidden peer-checked:block mt-3 rounded-xl border border-lb-stone p-4 bg-lb-cream/50">
-                  <div class="grid sm:grid-cols-2 gap-3">
-                    <div class="sm:col-span-2">
-                      <label for="numero-tarjeta" class="block text-sm font-medium text-lb-ink mb-1.5">Numero de tarjeta</label>
-                      <input id="numero-tarjeta" type="text" inputmode="numeric" autocomplete="cc-number" pattern="[0-9 ]{13,19}" maxlength="19" title="Ingresa un numero de tarjeta valido" class="w-full rounded-lg border border-lb-stone px-3 py-2.5 text-sm text-lb-ink focus:outline-none focus:ring-1 focus:ring-lb-electric" placeholder="0000 0000 0000 0000" />
-                    </div>
-                    <div>
-                      <label for="vencimiento" class="block text-sm font-medium text-lb-ink mb-1.5">Fecha de vencimiento</label>
-                      <input id="vencimiento" type="text" inputmode="numeric" autocomplete="cc-exp" pattern="(0[1-9]|1[0-2])\/[0-9]{2}" maxlength="5" title="Formato MM/AA" class="w-full rounded-lg border border-lb-stone px-3 py-2.5 text-sm text-lb-ink focus:outline-none focus:ring-1 focus:ring-lb-electric" placeholder="MM/AA" />
-                    </div>
-                    <div>
-                      <label for="cvv" class="block text-sm font-medium text-lb-ink mb-1.5">Codigo de seguridad (CVV)</label>
-                      <input id="cvv" type="text" inputmode="numeric" autocomplete="cc-csc" pattern="[0-9]{3,4}" maxlength="4" title="CVV de 3 o 4 digitos" class="w-full rounded-lg border border-lb-stone px-3 py-2.5 text-sm text-lb-ink focus:outline-none focus:ring-1 focus:ring-lb-electric" placeholder="123" />
-                    </div>
-                    <div class="sm:col-span-2">
-                      <label for="titular" class="block text-sm font-medium text-lb-ink mb-1.5">Nombre del titular</label>
-                      <input id="titular" type="text" autocomplete="cc-name" minlength="2" maxlength="80" pattern="[A-Za-zÁÉÍÓÚÜÑáéíóúüñ ]{2,80}" class="w-full rounded-lg border border-lb-stone px-3 py-2.5 text-sm text-lb-ink focus:outline-none focus:ring-1 focus:ring-lb-electric" placeholder="Como figura en la tarjeta" />
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div>
-                <input id="metodo-paypal" type="radio" name="metodo-pago" class="peer sr-only" />
-                <label for="metodo-paypal" class="flex items-center justify-between rounded-xl border border-lb-stone px-4 py-3 cursor-pointer peer-checked:border-lb-blue peer-checked:bg-lb-ice/60 transition-colors">
-                  <span class="font-semibold text-sm text-lb-ink">PayPal</span>
-                  <span class="text-xs text-lb-muted">Pago express</span>
-                </label>
-                <div class="hidden peer-checked:block mt-3 rounded-xl border border-lb-stone p-4 bg-lb-cream/50">
-                  <p class="text-sm text-lb-ink">Seras redirigido a PayPal para completar el pago de forma segura.</p>
-                  <a href="https://www.paypal.com" target="_blank" rel="noopener noreferrer" class="mt-3 inline-flex items-center justify-center rounded-lg bg-[#0070BA] px-4 py-2.5 text-sm font-semibold text-white hover:opacity-90 transition-opacity">Continuar con PayPal</a>
-                </div>
-              </div>
-
-              <div>
-                <input id="metodo-mercadopago" type="radio" name="metodo-pago" class="peer sr-only" />
-                <label for="metodo-mercadopago" class="flex items-center justify-between rounded-xl border border-lb-stone px-4 py-3 cursor-pointer peer-checked:border-lb-blue peer-checked:bg-lb-ice/60 transition-colors">
-                  <span class="font-semibold text-sm text-lb-ink">Mercado Pago</span>
-                  <span class="text-xs text-lb-muted">QR y link de pago</span>
-                </label>
-                <div class="hidden peer-checked:block mt-3 rounded-xl border border-lb-stone p-4 bg-lb-cream/50">
-                  <p class="text-sm text-lb-ink mb-3">Escanea el codigo QR desde la app de Mercado Pago para pagar al instante.</p>
-                  <div class="w-36 h-36 rounded-lg border-2 border-dashed border-lb-stone bg-white flex items-center justify-center text-xs text-lb-muted">QR de prueba</div>
-                  <a href="https://www.mercadopago.com" target="_blank" rel="noopener noreferrer" class="mt-3 inline-flex text-sm font-semibold text-lb-blue hover:text-lb-electric transition-colors">O pagar con enlace alternativo</a>
-                </div>
-              </div>
-            </div>
-          </section>
-        </form>
-
-        <aside class="lg:col-span-4 bg-white border border-lb-stone rounded-2xl p-5 md:p-6" aria-label="Resumen final">
-          <h3 class="font-semibold text-lb-ink text-lg">Resumen final</h3>
-          <p class="text-lb-muted text-sm mt-1">3 productos</p>
-          <dl class="mt-6 space-y-3 text-sm">
-            <div class="flex items-center justify-between">
-              <dt class="text-lb-muted">Subtotal</dt>
-              <dd class="font-semibold text-lb-ink">$257.00</dd>
-            </div>
-            <div class="flex items-center justify-between">
-              <dt class="text-lb-muted">Impuestos</dt>
-              <dd class="font-semibold text-lb-ink">$25.70</dd>
-            </div>
-            <div class="pt-3 border-t border-lb-stone flex items-center justify-between">
-              <dt class="font-semibold text-lb-ink">Total a pagar</dt>
-              <dd class="font-bold text-lb-blue text-lg">$282.70</dd>
-            </div>
-          </dl>
-          <button type="submit" form="checkout-form" class="mt-6 w-full bg-lb-navy hover:bg-lb-blue text-white font-bold py-3.5 rounded-lg transition-colors">Confirmar pedido</button>
-        </aside>
-      </div>
-    </div>
-  </section>
-
   <!-- ================================================
     FAVORITOS
   ================================================ -->
